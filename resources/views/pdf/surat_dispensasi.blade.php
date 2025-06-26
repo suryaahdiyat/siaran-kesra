@@ -114,10 +114,11 @@
     </table>
 
     <div class="judul-surat">SURAT DISPENSASI NIKAH</div>
-    <div class="nomor-surat">NOMOR : {{ $data->nomor_surat_kua }}</div>
+    <div class="nomor-surat">NOMOR : 474.2/ &nbsp; &nbsp; &nbsp; / Mdt / </div>
 
     <p style="text-align: justify">
-        Yang bertanda tangan di bawah ini, atas nama Camat Mandastana, Kasi Kesra dan Pelayanan Kecamatan Mandastana
+        &nbsp; &nbsp; Yang bertanda tangan di bawah ini, atas nama Camat Mandastana, Kasi Kesra dan Pelayanan Kecamatan
+        Mandastana
         Kabupaten Barito Kuala, berdasarkan surat Kepala Kantor Urusan Agama Kecamatan Mandastana Nomor:
         {{ $data->nomor_surat_kua }} tanggal
         {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }},
@@ -264,22 +265,38 @@
     </table> --}}
 
     <p style="margin-top: 15px;text-align: justify">
-        Sepanjang tidak mengurangi ketentuan-ketentuan yang berlaku Tata Cara Percepatan Nikah / Perkawinan berdasarkan
+        &nbsp; &nbsp; Sepanjang tidak mengurangi ketentuan-ketentuan yang berlaku Tata Cara Percepatan Nikah /
+        Perkawinan berdasarkan
         pasal 3 Peraturan Pemerintah RI Nomor : 9 tahun 1975 tentang Perkawinan, Akad Nikah dapat dilaksanakan pada Hari
         <strong>{{ \Carbon\Carbon::parse($data->tanggal_nikah)->translatedFormat('d F Y') }}</strong>.
     </p>
 
-    <p>Demikian surat ini diberikan kepada yang bersangkutan untuk dapat digunakan sebagaimana mestinya.</p>
+    <p>&nbsp; &nbsp; Demikian surat ini diberikan kepada yang bersangkutan untuk dapat digunakan sebagaimana mestinya.
+    </p>
 
     {{-- TTD --}}
-    <div class="ttd">
+    {{-- <div class="ttd">
         <p>Dibuat di : Mandastana<br>
             Pada tanggal : {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
         </p>
         <p><strong>CAMAT MANDASTANA</strong></p><br><br><br>
         <p><strong>____________________</strong></p>
-    </div>
+    </div> --}}
 
+    <table style="width: 40%;float: right;">
+        <tr>
+            <td>Dibuat Di</td>
+            <td>: Mandastana</td>
+        </tr>
+        <tr style="">
+            <td>Pada Tanggal</td>
+            <td>: {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-top: 1px solid black" colspan="2"><strong> Camat Mandastana
+                </strong></td>
+        </tr>
+    </table>
 </body>
 
 </html>

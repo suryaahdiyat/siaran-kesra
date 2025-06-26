@@ -87,7 +87,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Sudah pernah menikah sebelumnya?</label>
                                 <div>
-                                    <input type="radio" class="btn-check" name="pernah_menikah_pria" id="pria_ya"
+                                    <input type="radio" class="btn-check" name="pernah_nikah_pria" id="pria_ya"
                                         value="1" autocomplete="off" onchange="toggleBuktiCerai('pria', true)">
                                     <label class="btn btn-outline-primary" for="pria_ya">Ya</label>
                                     <input type="radio" class="btn-check" name="pernah_nikah_pria" id="pria_tidak"
@@ -141,7 +141,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Sudah pernah menikah sebelumnya?</label>
                                 <div>
-                                    <input type="radio" class="btn-check" name="pernah_menikah_wanita"
+                                    <input type="radio" class="btn-check" name="pernah_nikah_wanita"
                                         id="wanita_ya" value="1" autocomplete="off"
                                         onchange="toggleBuktiCerai('wanita', true)">
                                     <label class="btn btn-outline-primary" for="wanita_ya">Ya</label>
