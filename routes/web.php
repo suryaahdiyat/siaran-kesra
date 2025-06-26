@@ -48,23 +48,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // --- Grup untuk Fitur Arsip Umum ---
     // URL akan menjadi /arsip, /arsip/upload, dst.
-    Route::prefix('arsip')->name('arsip.')->group(function () {
+    // Route::prefix('arsip')->name('arsip.')->group(function () {
 
-        // Rute yang bisa diakses Keduanya (Staff & Kepala Bidang)
-        Route::middleware('role:staff,kepala_bidang')->group(function () {
-            Route::get('/', [ArsipController::class, 'index'])->name('index');
-            Route::get('/{id}/download', [ArsipController::class, 'download'])->name('download');
-        });
+    //     // Rute yang bisa diakses Keduanya (Staff & Kepala Bidang)
+    //     Route::middleware('role:staff,kepala_bidang')->group(function () {
+    //         Route::get('/', [ArsipController::class, 'index'])->name('index');
+    //         Route::get('/{id}/download', [ArsipController::class, 'download'])->name('download');
+    //     });
 
-        // Rute yang hanya bisa diakses Staff
-        Route::middleware('role:staff')->group(function () {
-            Route::get('/upload', [ArsipController::class, 'create'])->name('create');
-            Route::post('/', [ArsipController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [ArsipController::class, 'edit'])->name('edit');
-            Route::put('/{id}', [ArsipController::class, 'update'])->name('update');
-            Route::delete('/{id}', [ArsipController::class, 'destroy'])->name('destroy');
-        });
-    });
+    //     // Rute yang hanya bisa diakses Staff
+    //     Route::middleware('role:staff')->group(function () {
+    //         Route::get('/upload', [ArsipController::class, 'create'])->name('create');
+    //         Route::post('/', [ArsipController::class, 'store'])->name('store');
+    //         Route::get('/{id}/edit', [ArsipController::class, 'edit'])->name('edit');
+    //         Route::put('/{id}', [ArsipController::class, 'update'])->name('update');
+    //         Route::delete('/{id}', [ArsipController::class, 'destroy'])->name('destroy');
+    //     });
+    // });
 
 
     // --- Grup untuk Fitur Admin (Bisa ditambahkan fitur lain nanti) ---
@@ -76,6 +76,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->middleware('role:staff,kepala_bidang') // Hanya staff & kabid
             ->name('dispensasi.index');
 
+        Route::get('/dispensasi-nikah/{id}/edit', [DispensasiNikahController::class, 'edit'])
+            ->middleware('role:staff,kepala_bidang') // Hanya staff & kabid
+            ->name('dispensasi.edit');
+        Route::put('/dispensasi-nikah/{id}', [DispensasiNikahController::class, 'update'])
+            ->middleware('role:staff,kepala_bidang') // Hanya staff & kabid
+            ->name('dispensasi.update');
+        Route::delete('/dispensasi-nikah/{id}', [DispensasiNikahController::class, 'destroy'])
+            ->middleware('role:staff,kepala_bidang') // Hanya staff & kabid
+            ->name('dispensasi.destroy');
         // Tambahkan rute admin lain di sini...
     });
 });

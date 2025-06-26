@@ -38,11 +38,6 @@
                                             <i class="bi bi-download"></i> Lihat
                                         </a>
                                     </td>
-                                    {{-- <td class="text-center">
-                                <a href="#" class="btn btn-sm btn-warning disabled" title="Fitur ini akan dikembangkan">
-                                    <i class="bi bi-printer"></i> Generate
-                                </a>
-                            </td> --}}
 
                                     <td class="text-center">
                                         <a href="{{ route('dispensasi.generatePDF', $item->id) }}"
@@ -51,9 +46,16 @@
                                         </a>
                                     </td>
 
-                                    <td class="text-center">
+                                    <td class="text-center justify-content-evenly d-flex">
                                         {{-- Tombol aksi lain seperti edit/hapus bisa ditambahkan di sini --}}
-                                        <a href="#" class="btn btn-sm btn-secondary"><i class="bi bi-eye"></i></a>
+                                        <a href="{{ route('admin.dispensasi.edit', $item->id) }}"
+                                            class="btn btn-sm btn-secondary">Edit</a>
+                                        <form action="{{ route('admin.dispensasi.destroy', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('hapus data ini?')"
+                                                class="btn btn-sm btn-danger">Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty

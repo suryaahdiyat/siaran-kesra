@@ -122,11 +122,11 @@
         Kabupaten Barito Kuala, berdasarkan surat Kepala Kantor Urusan Agama Kecamatan Mandastana Nomor:
         {{ $data->nomor_surat_kua }} tanggal
         {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }},
-        tentang Permohonan Surat Dispensasi Nikah atas nama:
+        tentang Permohon Surat Dispensasi Nikah Atas Nama
         {{ $data->nama_pria }}
         dengan
         {{ $data->nama_wanita }}
-        dengan ini diberikan Dispensasi Percepatan Pelaksanaan Akad Nikah.
+        dengan ini diberikan Dispensasi Pelaksanaan Akad Nikah/Kawin kepada :
     </p>
 
     {{-- IDENTITAS PRIA --}}
