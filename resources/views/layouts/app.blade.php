@@ -66,26 +66,30 @@
             <h4>SIARAN KESRA</h4>
             <hr>
         </div>
-        <ul class="mb-auto nav nav-pills flex-column">
+        <ul class="mb-auto nav nav-pills flex-column ">
             <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
+                <a href="/dashboard" class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}"
+                    aria-current="page">
                     <i class="bi bi-house-door-fill"></i>Beranda
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="#suratMasukSubmenu" data-bs-toggle="collapse" class="nav-link">
-                    <i class="bi bi-arrow-down-square-fill"></i>Surat Masuk
+                    <i class="bi bi-arrow-down-square-fill "></i>Surat Masuk
                 </a>
                 <ul class="collapse list-unstyled nav flex-column" id="suratMasukSubmenu">
-                    <li><a href="{{ route('admin.dispensasi.index') }}" class="text-white nav-link">Dispensasi Nikah</a>
+                    <li><a href="{{ route('admin.dispensasi.index') }}"
+                            class="text-white nav-link {{ Request::is('admin*') ? 'active' : '' }}">Dispensasi Nikah</a>
                     </li>
-                    <li><a href="#" class="nav-link">Surat Keterangan Tidak Mampu</a></li>
-                    <li><a href="#" class="nav-link">Rekomendasi Izin Mencari Dana</a></li>
-                    <li><a href="#" class="nav-link">Legalisasi Izin Orang Banyak</a></li>
-                    <li><a href="#" class="nav-link">Rekomendasi Izin UMK</a></li>
-                    <li><a href="#" class="nav-link">Legalisasi & Rekomendasi Proposal</a></li>
-                    <li><a href="#" class="nav-link">Rekomendasi SKU</a></li>
-                    <li><a href="#" class="nav-link">Rekomendasi Bantuan Keagamaan</a></li>
+                    <li><a href="{{ route('admin.sktm.index') }}" class="nav-link">Surat Keterangan Tidak Mampu</a></li>
+                    <li><a href="{{ route('admin.rimd.index') }}" class="nav-link">Rekomendasi Izin Mencari Dana</a>
+                    </li>
+                    <li><a href="{{ route('admin.liob.index') }}" class="nav-link">Legalisasi Izin Orang Banyak</a></li>
+                    <li><a href="{{ route('admin.riumk.index') }}" class="nav-link">Rekomendasi Izin UMK</a></li>
+                    <li><a href="{{ route('admin.lrp.index') }}" class="nav-link">Legalisasi & Rekomendasi Proposal</a>
+                    </li>
+                    <li><a href="{{ route('admin.rsku.index') }}" class="nav-link">Rekomendasi SKU</a></li>
+                    <li><a href="{{ route('admin.rbk.index') }}" class="nav-link">Rekomendasi Bantuan Keagamaan</a></li>
                 </ul>
             </li>
             <li>
@@ -94,14 +98,150 @@
                 </a>
                 <ul class="collapse list-unstyled nav flex-column" id="suratKeluarSubmenu">
                     <li><a href="#" class="nav-link">Dispensasi Nikah</a></li>
-                    <li><a href="#" class="nav-link">Surat Keterangan Tidak Mampu</a></li>
+                    <li><a href="{{ route('admin.sktm2.index') }}" class="nav-link">Surat Keterangan Tidak Mampu</a>
+                    </li>
                     <li><a href="#" class="nav-link">Rekomendasi Izin Mencari Dana</a></li>
                     <li><a href="#" class="nav-link">Legalisasi Izin Orang Banyak</a></li>
                     <li><a href="#" class="nav-link">Rekomendasi Izin UMK</a></li>
                     <li><a href="#" class="nav-link">Legalisasi & Rekomendasi Proposal</a></li>
                     <li><a href="#" class="nav-link">Rekomendasi SKU</a></li>
                     <li><a href="#" class="nav-link">Rekomendasi Bantuan Keagamaan</a></li>
+                </ul> --}}
+            <li>
+                <a href="#suratMasukSubmenu" data-bs-toggle="collapse" class="nav-link">
+                    <i class="bi bi-arrow-down-square-fill"></i> Surat Masuk
+                </a>
+                <ul class="collapse list-unstyled nav flex-column {{ Request::routeIs(
+                    'admin.dispensasi.*',
+                    'admin.sktm.*',
+                    'admin.rimd.*',
+                    'admin.liob.*',
+                    'admin.riumk.*',
+                    'admin.lrp.*',
+                    'admin.rsku.*',
+                    'admin.rbk.*',
+                )
+                    ? 'show'
+                    : '' }}"
+                    id="suratMasukSubmenu">
+                    <li>
+                        <a href="{{ route('admin.dispensasi.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.dispensasi.*') ? 'active text-white' : '' }}">
+                            Dispensasi Nikah
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.sktm.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.sktm.*') ? 'active text-white' : '' }}">
+                            Surat Keterangan Tidak Mampu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.rimd.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.rimd.*') ? 'active text-white' : '' }}">
+                            Rekomendasi Izin Mencari Dana
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.liob.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.liob.*') ? 'active text-white' : '' }}">
+                            Legalisasi Izin Orang Banyak
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.riumk.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.riumk.*') ? 'active text-white' : '' }}">
+                            Rekomendasi Izin UMK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.lrp.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.lrp.*') ? 'active text-white' : '' }}">
+                            Legalisasi & Rekomendasi Proposal
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.rsku.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.rsku.*') ? 'active text-white' : '' }}">
+                            Rekomendasi SKU
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.rbk.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.rbk.*') ? 'active text-white' : '' }}">
+                            Rekomendasi Bantuan Keagamaan
+                        </a>
+                    </li>
                 </ul>
+            </li>
+
+            <li>
+                <a href="#suratKeluarSubmenu" data-bs-toggle="collapse" class="nav-link">
+                    <i class="bi bi-arrow-up-square-fill"></i> Surat Keluar
+                </a>
+                <ul class="collapse list-unstyled nav flex-column {{ Request::routeIs(
+                    'admin.dispensasi2.*',
+                    'admin.sktm2.*',
+                    'admin.rimd2.*',
+                    'admin.liob2.*',
+                    'admin.riumk2.*',
+                    'admin.lrp2.*',
+                    'admin.rsku2.*',
+                    'admin.rbk2.*',
+                )
+                    ? 'show'
+                    : '' }}"
+                    id="suratKeluarSubmenu">
+                    <li>
+                        <a href="{{ route('admin.dispensasi2.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.dispensasi2.*') ? 'active text-white' : '' }}">
+                            Dispensasi Nikah
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.sktm2.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.sktm2.*') ? 'active text-white' : '' }}">
+                            Surat Keterangan Tidak Mampu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.rimd2.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.rimd2.*') ? 'active text-white' : '' }}">
+                            Rekomendasi Izin Mencari Dana
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.liob2.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.liob2.*') ? 'active text-white' : '' }}">
+                            Legalisasi Izin Orang Banyak
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.riumk.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.riumk.*') ? 'active text-white' : '' }}">
+                            Rekomendasi Izin UMK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.lrp.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.lrp.*') ? 'active text-white' : '' }}">
+                            Legalisasi & Rekomendasi Proposal
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.rsku.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.rsku.*') ? 'active text-white' : '' }}">
+                            Rekomendasi SKU
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.rbk.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.rbk.*') ? 'active text-white' : '' }}">
+                            Rekomendasi Bantuan Keagamaan
+                        </a>
+                    </li>
+                </ul>
+
             </li>
             <hr>
             <li>

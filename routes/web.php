@@ -1,10 +1,22 @@
 <?php
 
+use App\Http\Controllers\Liob2Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\DispensasiNikahController;
+use App\Http\Controllers\DispensasiNikah2Controller;
+use App\Http\Controllers\LiobController;
+use App\Http\Controllers\LrpController;
+use App\Http\Controllers\RbkController;
+use App\Http\Controllers\Rimd2Controller;
+use App\Http\Controllers\RimdController;
+use App\Http\Controllers\RiumkController;
+use App\Http\Controllers\RskuController;
+use App\Http\Controllers\Sktm2Controller;
+use App\Http\Controllers\SktmController;
+use App\Models\DispensasiNikah;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +97,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/dispensasi-nikah/{id}', [DispensasiNikahController::class, 'destroy'])
             ->middleware('role:staff,kepala_bidang') // Hanya staff & kabid
             ->name('dispensasi.destroy');
+
+
+
+        Route::resource('/dispensasi2', DispensasiNikah2Controller::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/sktm', SktmController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/sktm2', Sktm2Controller::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/rimd', RimdController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/rimd2', Rimd2Controller::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/liob', LiobController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/liob2', Liob2Controller::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/riumk', RiumkController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/lrp', LrpController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/rsku', RskuController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/rbk', RbkController::class)->middleware('role:staff,kepala_bidang');
         // Tambahkan rute admin lain di sini...
     });
 });
