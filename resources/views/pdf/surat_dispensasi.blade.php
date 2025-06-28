@@ -1,61 +1,3 @@
-{{-- <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Surat Dispensasi Nikah</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            font-size: 14px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .section {
-            margin: 20px;
-        }
-
-        .ttd {
-            text-align: right;
-            margin-top: 50px;
-            margin-right: 50px;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="header">
-        <h2>SURAT DISPENSASI NIKAH</h2>
-        <p>Nomor: {{ $data->nomor_surat_kua }}</p>
-    </div>
-
-    <div class="section">
-        <p>Telah mengajukan dispensasi nikah atas nama:</p>
-
-        <p><strong>Pria:</strong> {{ $data->nama_pria }} - {{ $data->tempat_lahir_pria }},
-            {{ \Carbon\Carbon::parse($data->tanggal_lahir_pria)->translatedFormat('d F Y') }}</p>
-        <p><strong>Wanita:</strong> {{ $data->nama_wanita }} - {{ $data->tempat_lahir_wanita }},
-            {{ \Carbon\Carbon::parse($data->tanggal_lahir_wanita)->translatedFormat('d F Y') }}</p>
-
-        <p>Tanggal Rencana Nikah:
-            <strong>{{ \Carbon\Carbon::parse($data->tanggal_nikah)->translatedFormat('d F Y') }}</strong></p>
-
-        <p>Demikian surat ini dibuat untuk digunakan sebagaimana mestinya.</p>
-    </div>
-
-    <div class="ttd">
-        <p>{{ now()->translatedFormat('d F Y') }}</p>
-        <p><strong>Kepala KUA</strong></p><br><br><br>
-        <p><strong>_____________________</strong></p>
-    </div>
-</body>
-
-</html> --}}
-
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -100,18 +42,22 @@
     {{-- KOP SURAT --}}
 
     {{-- KOP SURAT --}}
-    <table width="100%" style="border-bottom: 4px solid black; padding-bottom: 3px; margin-bottom: 20px;">
-        <tr>
-            <td width="15%" align="center">
-                <img src="{{ public_path('images/Lambang_Kabupaten_Barito_Kuala.png') }}" alt="Logo" width="100">
-            </td>
-            <td width="85%" align="center">
-                <h3 style="margin: 0; font-size: 20pt;">PEMERINTAH KABUPATEN BARITO KUALA</h3>
-                <h3 style="margin: 0; font-size: 20pt;">KECAMATAN MANDASTANA</h3>
-                <p style="margin: 0; font-size: 12pt;">Jl. Tabing Rimbah No. 03 RT. 07, Mandastana 70581</p>
-            </td>
-        </tr>
-    </table>
+    <div style="border-bottom: 1px solid black;">
+
+        <table width="100%" style="border-bottom: 4px solid black; padding-bottom: 3px;margin-bottom: 3px;">
+            <tr>
+                <td width="15%" align="center">
+                    <img src="{{ public_path('images/Lambang_Kabupaten_Barito_Kuala.png') }}" alt="Logo"
+                        width="100">
+                </td>
+                <td width="85%" align="center">
+                    <h3 style="margin: 0; font-size: 20pt;">PEMERINTAH KABUPATEN BARITO KUALA</h3>
+                    <h3 style="margin: 0; font-size: 20pt;">KECAMATAN MANDASTANA</h3>
+                    <p style="margin: 0; font-size: 12pt;">Jl. Tabing Rimbah No. 03 RT. 07, Mandastana 70581</p>
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <div class="judul-surat">SURAT DISPENSASI NIKAH</div>
     <div class="nomor-surat">NOMOR : 474.2/ &nbsp; &nbsp; &nbsp; / Mdt / </div>

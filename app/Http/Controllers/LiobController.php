@@ -19,7 +19,8 @@ class LiobController extends Controller
             $search = $request->search;
             $query->where(function ($q) use ($search) {
                 $q->where('nama_pengantar', 'like', "%{$search}%")
-                    ->orWhere('alamat_pengantar', 'like', "%{$search}%");
+                    ->orWhere('alamat_pengantar', 'like', "%{$search}%")
+                    ->orWhere('nama_desa', 'like', "%{$search}%");
             });
         }
 
@@ -43,6 +44,7 @@ class LiobController extends Controller
         $dataTostore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
+            'nama_desa' => 'required|string|max:255',
             'file_liob_before' => 'required|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
@@ -76,6 +78,7 @@ class LiobController extends Controller
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
+            'nama_desa' => 'required|string|max:255',
             'file_liob_before' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
@@ -86,6 +89,9 @@ class LiobController extends Controller
             }
             // Simpan file baru
             $dataToUpdate['file_liob_before'] = $request->file('file_liob_before')->store('liob/before', 'public');
+        } else {
+            // Jika tidak ada file baru, tetap gunakan file lama
+            $dataToUpdate['file_liob_before'] = $liob->file_liob_before;
         }
 
         $liob->update($dataToUpdate);

@@ -27,6 +27,7 @@ class DispensasiNikahController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         // Validasi semua data yang masuk dari form.
         $validated = $request->validate([
             'nomor_surat_kua'       => 'required|string|max:255',
@@ -38,6 +39,8 @@ class DispensasiNikahController extends Controller
             'tanggal_lahir_pria'    => 'required|date',
             'agama_pria'            => 'required|string',
             'pekerjaan_pria'        => 'required|string|max:100',
+            'desa_pria'             => 'required|string',
+            'desa_pria_lainnya'     => 'nullable|string|max:100', // Input tambahan jika pilih "Lainnya"
             'alamat_pria'           => 'required|string',
             // 'pernah_nikah_pria'   => 'required|boolean',
             'file_bukti_cerai_pria' => 'nullable|file|mimes:pdf,jpg,png,jpeg|max:5120',
@@ -47,10 +50,14 @@ class DispensasiNikahController extends Controller
             'tanggal_lahir_wanita'  => 'required|date',
             'agama_wanita'          => 'required|string',
             'pekerjaan_wanita'      => 'required|string|max:100',
+            'desa_wanita'           => 'required|string',
+            'desa_wanita_lainnya'   => 'nullable|string|max:100', // Input tambahan jika pilih "Lainnya"
             'alamat_wanita'         => 'required|string',
             // 'pernah_nikah_wanita' => 'required|boolean',
             'file_bukti_cerai_wanita' => 'nullable|file|mimes:pdf,jpg,png,jpeg|max:5120',
         ]);
+
+        // dd($validated);
 
         // Siapkan array data yang akan disimpan, dimulai dengan data yang sudah tervalidasi
         $dataToStore = $validated;
@@ -91,8 +98,10 @@ class DispensasiNikahController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('nama_pria', 'like', "%{$search}%")
                     ->orWhere('nama_wanita', 'like', "%{$search}%")
-                    ->orWhere('alamat_pria', 'like', "%{$search}%")
-                    ->orWhere('alamat_wanita', 'like', "%{$search}%");
+                    ->orWhere('desa_pria', 'like', "%{$search}%")
+                    ->orWhere('desa_pria_lainnya', 'like', value: "%{$search}%")
+                    ->orWhere('desa_wanita', 'like', "%{$search}%")
+                    ->orWhere('desa_wanita_lainnya', 'like', "%{$search}%");
             });
         }
 
@@ -123,6 +132,8 @@ class DispensasiNikahController extends Controller
             'tanggal_lahir_pria'    => 'required|date',
             'agama_pria'            => 'required|string',
             'pekerjaan_pria'        => 'required|string|max:100',
+            'desa_pria'             => 'required|string',
+            'desa_pria_lainnya'     => 'nullable|string|max:100', // Input tambahan jika pilih "Lainnya"
             'alamat_pria'           => 'required|string',
             'nama_wanita'           => 'required|string|max:255',
             'jenis_kelamin_wanita'  => 'required|string',
@@ -130,6 +141,8 @@ class DispensasiNikahController extends Controller
             'tanggal_lahir_wanita'  => 'required|date',
             'agama_wanita'          => 'required|string',
             'pekerjaan_wanita'      => 'required|string|max:100',
+            'desa_wanita'           => 'required|string',
+            'desa_wanita_lainnya'   => 'nullable|string|max:100', // Input tambahan jika pilih "Lainnya"
             'alamat_wanita'         => 'required|string',
         ]);
 

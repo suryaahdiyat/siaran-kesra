@@ -10,6 +10,7 @@ class Liob extends Model
         'nama_pengantar',
         'nomor_surat',
         'alamat_pengantar',
+        'nama_desa',
         'file_liob_before',
         'file_liob_after',
         'file_liob_after_uploaded_at',

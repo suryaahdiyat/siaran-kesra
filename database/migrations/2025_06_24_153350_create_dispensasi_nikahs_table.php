@@ -28,6 +28,8 @@ return new class extends Migration
             $table->date('tanggal_lahir_pria');
             $table->string('agama_pria');
             $table->string('pekerjaan_pria');
+            $table->string('desa_pria');
+            $table->string('desa_pria_lainnya')->nullable(); // Input tambahan jika pilih "Lainnya"
             $table->text('alamat_pria');
             /* The code snippet you provided is defining the columns for a database table named `dispensasi_nikahs`
 using Laravel's migration schema builder. */
@@ -41,6 +43,8 @@ using Laravel's migration schema builder. */
             $table->date('tanggal_lahir_wanita');
             $table->string('agama_wanita');
             $table->string('pekerjaan_wanita');
+            $table->string('desa_wanita');
+            $table->string('desa_wanita_lainnya')->nullable(); // Input tambahan
             $table->text('alamat_wanita');
             $table->boolean('pernah_nikah_wanita');
             $table->string('file_bukti_cerai_wanita')->nullable(); // Bisa kosong

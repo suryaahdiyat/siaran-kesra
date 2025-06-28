@@ -19,7 +19,8 @@ class LrpController extends Controller
             $search = request()->search;
             $query->where(function ($q) use ($search) {
                 $q->where('nama_pengantar', 'like', "%{$search}%")
-                    ->orWhere('alamat_pengantar', 'like', "%{$search}%");
+                    ->orWhere('alamat_pengantar', 'like', "%{$search}%")
+                    ->orWhere('nama_desa', 'like', "%{$search}%");
             });
         }
 
@@ -44,6 +45,7 @@ class LrpController extends Controller
         $dataToStore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
+            'nama_desa' => 'required|string|max:255',
             'file_lrp_before' => 'required|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
@@ -77,6 +79,7 @@ class LrpController extends Controller
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
+            'nama_desa' => 'required|string|max:255',
             'file_lrp_before' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
@@ -87,6 +90,9 @@ class LrpController extends Controller
             }
             // If a new file is uploaded, store it and update the path
             $dataToUpdate['file_lrp_before'] = $request->file('file_lrp_before')->store('lrp/before', 'public');
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_lrp_before'] = $lrp->file_lrp_before;
         }
 
         $lrp->update($dataToUpdate);

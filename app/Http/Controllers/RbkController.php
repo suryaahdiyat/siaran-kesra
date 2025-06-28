@@ -19,7 +19,8 @@ class RbkController extends Controller
             $search = $request->search;
             $query->where(function ($q) use ($search) {
                 $q->where('nama_pengantar', 'like', "%{$search}%")
-                    ->orWhere('alamat_pengantar', 'like', "%{$search}%");
+                    ->orWhere('alamat_pengantar', 'like', "%{$search}%")
+                    ->orWhere('nama_desa', 'like', "%{$search}%");
             });
         }
 
@@ -44,6 +45,7 @@ class RbkController extends Controller
         $dataToStore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
+            'nama_desa' => 'required|string|max:255',
             'file_rbk_before' => 'required|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
@@ -77,6 +79,7 @@ class RbkController extends Controller
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
+            'nama_desa' => 'required|string|max:255',
             'file_rbk_before' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
@@ -86,6 +89,9 @@ class RbkController extends Controller
                 Storage::delete($rbk->file_rbk_before);
             }
             $dataToUpdate['file_rbk_before'] = $request->file('file_rbk_before')->store('rbk/before', 'public');
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_rbk_before'] = $rbk->file_rbk_before;
         }
 
         $rbk->update($dataToUpdate);

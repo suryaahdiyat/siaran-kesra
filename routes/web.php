@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArsipController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DispensasiNikahController;
 use App\Http\Controllers\DispensasiNikah2Controller;
 use App\Http\Controllers\LiobController;
@@ -51,9 +52,7 @@ Route::post('/dispensasi-nikah', [DispensasiNikahController::class, 'store'])->n
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // --- Rute Dashboard & Profile (Bawaan Breeze) ---
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

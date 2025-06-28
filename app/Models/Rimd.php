@@ -10,6 +10,7 @@ class Rimd extends Model
         'nama_pengantar',
         'nomor_surat',
         'alamat_pengantar',
+        'nama_desa',
         'file_rimd_before',
         'file_rimd_after',
         'file_rimd_after_uploaded_at',

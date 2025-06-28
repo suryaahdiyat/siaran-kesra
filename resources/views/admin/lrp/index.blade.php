@@ -10,7 +10,7 @@
                 <form action="{{ route('admin.lrp.index') }}" method="GET" class="mb-3">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control"
-                            placeholder="Cari nama pengantar/ alamat..." value="{{ request('search') }}">
+                            placeholder="Cari nama pengantar/ alamat/ desa..." value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i> Cari
                         </button>
@@ -27,6 +27,7 @@
                                 <th>No.</th>
                                 <th>Nama Pengantar</th>
                                 <th>Alamat Pengantar</th>
+                                <th>Desa Asal</th>
                                 <th>File LRP</th>
                                 <th>Tanggal Upload</th>
                                 <th>Aksi</th>
@@ -38,6 +39,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama_pengantar }}</td>
                                     <td>{{ $item->alamat_pengantar }}</td>
+                                    <td>{{ ucwords(str_replace('_', ' ', $item->nama_desa)) }}</td>
                                     <td class="text-center">
                                         <a href="{{ asset('storage/' . $item->file_lrp_before) }}" target="_blank"
                                             class="btn btn-sm btn-info">

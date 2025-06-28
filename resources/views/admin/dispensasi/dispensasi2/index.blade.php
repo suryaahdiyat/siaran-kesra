@@ -39,12 +39,11 @@
                             @forelse ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td class="text-truncate" style="max-width: 100px;">{{ $item->nomor_surat_kua }}</td>
                                     <td class="text-truncate" style="max-width: 100px;">{{ $item->nama_pria }}</td>
                                     <td class="text-truncate" style="max-width: 100px;">{{ $item->nama_wanita }}</td>
                                     <td class="text-truncate" style="max-width: 100px;">{{ $item->alamat_pria }}</td>
                                     <td class="text-truncate" style="max-width: 100px;">{{ $item->alamat_wanita }}</td>
-                                    <td class="text-truncate" style="max-width: 70px;">
-                                        {{ $item->created_at->format('d M Y') }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('dispensasi.generatePDF', $item->id) }}"
                                             class="btn btn-sm btn-warning" title="Unduh Surat Dispensasi">

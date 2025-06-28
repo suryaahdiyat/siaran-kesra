@@ -19,7 +19,8 @@ class SktmController extends Controller
             $search = $request->search;
             $query->where(function ($q) use ($search) {
                 $q->where('nama_pengantar', 'like', "%{$search}%")
-                    ->orWhere('alamat_pengantar', 'like', "%{$search}%");
+                    ->orWhere('alamat_pengantar', 'like', "%{$search}%")
+                    ->orWhere('nama_desa', 'like', "%{$search}%");
             });
         }
 
@@ -45,6 +46,7 @@ class SktmController extends Controller
         $dataTostore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
+            'nama_desa' => 'required|string|max:255',
             'file_sktm_before' => 'required|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
@@ -80,8 +82,11 @@ class SktmController extends Controller
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
+            'nama_desa' => 'required|string|max:255',
             'file_sktm_before' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
+
+        // dd($dataToUpdate);
 
         if ($request->hasFile('file_sktm_before')) {
             // Hapus file lama jika ada
@@ -90,7 +95,11 @@ class SktmController extends Controller
             }
             // Simpan file baru
             $dataToUpdate['file_sktm_before'] = $request->file('file_sktm_before')->store('sktm/before', 'public');
+        } else {
+            // Jika tidak ada file baru, tetap gunakan file lama
+            $dataToUpdate['file_sktm_before'] = $sktm->file_sktm_before;
         }
+
 
         $sktm->update($dataToUpdate);
         return redirect()->route('admin.sktm.index')->with('berhasil', 'Data SKTM berhasil diperbarui.');

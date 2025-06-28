@@ -24,6 +24,8 @@ class DispensasiNikah extends Model
         'tanggal_lahir_pria',
         'agama_pria',
         'pekerjaan_pria',
+        'desa_pria',
+        'desa_pria_lainnya', // Input tambahan jika pilih "Lainnya"
         'alamat_pria',
         'pernah_nikah_pria', // <-- Kunci masalahnya ada di sini
         'file_bukti_cerai_pria',
@@ -33,6 +35,8 @@ class DispensasiNikah extends Model
         'tanggal_lahir_wanita',
         'agama_wanita',
         'pekerjaan_wanita',
+        'desa_wanita',
+        'desa_wanita_lainnya', // Input tambahan jika pilih "Lainnya
         'alamat_wanita',
         'pernah_nikah_wanita', // <-- Dan di sini
         'file_bukti_cerai_wanita',

@@ -80,6 +80,8 @@
                                 <label class="form-label">Pekerjaan</label>
                                 <input type="text" name="pekerjaan_pria" class="form-control" required>
                             </div>
+                            <x-dropdown-desa id="desa_pria" label="Desa" name="desa_pria" :isDispensasi="true"
+                                required />
                             <div class="mb-3">
                                 <label class="form-label">Alamat</label>
                                 <textarea name="alamat_pria" class="form-control" rows="3" required></textarea>
@@ -134,6 +136,8 @@
                                 <label class="form-label">Pekerjaan</label>
                                 <input type="text" name="pekerjaan_wanita" class="form-control" required>
                             </div>
+                            <x-dropdown-desa id="desa_wanita" label="Desa" name="desa_wanita" :isDispensasi="true"
+                                required />
                             <div class="mb-3">
                                 <label class="form-label">Alamat</label>
                                 <textarea name="alamat_wanita" class="form-control" rows="3" required></textarea>

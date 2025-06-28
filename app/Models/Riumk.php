@@ -10,6 +10,7 @@ class Riumk extends Model
         'nama_pengantar',
         'nomor_surat',
         'alamat_pengantar',
+        'nama_desa',
         'file_riumk_before',
         'file_riumk_after',
         'file_riumk_after_uploaded_at',

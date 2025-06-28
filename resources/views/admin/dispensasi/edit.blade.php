@@ -72,6 +72,8 @@
                             <input type="text" name="pekerjaan_pria" class="form-control" required
                                 value="{{ old('pekerjaan_pria', $data->pekerjaan_pria) }}">
                         </div>
+                        <x-dropdown-desa id="desa_pria" label="Desa Pria" :selected="old('desa_pria', $data->desa_pria)" :isDispensasi="true" required />
+
                         <div class="mb-3">
                             <label class="form-label">Alamat</label>
                             <textarea name="alamat_pria" class="form-control" rows="3" required>{{ old('alamat_pria', $data->alamat_pria) }}</textarea>
@@ -128,6 +130,9 @@
                             <input type="text" name="pekerjaan_wanita" class="form-control" required
                                 value="{{ old('pekerjaan_wanita', $data->pekerjaan_wanita) }}">
                         </div>
+                        <x-dropdown-desa id="desa_wanita" label="Desa Wanita" :selected="old('desa_wanita', $data->desa_wanita)" :isDispensasi="true"
+                            required />
+
                         <div class="mb-3">
                             <label class="form-label">Alamat</label>
                             <textarea name="alamat_wanita" class="form-control" rows="3" required>{{ old('alamat_wanita', $data->alamat_wanita) }}</textarea>

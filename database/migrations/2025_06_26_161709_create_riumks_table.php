@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nomor_surat')->nullable();
             $table->string('nama_pengantar');
             $table->string('alamat_pengantar');
+            $table->string('nama_desa');
             $table->string('file_riumk_before');
             $table->string('file_riumk_after')->nullable();
             $table->timestamp('file_riumk_after_uploaded_at')->nullable();

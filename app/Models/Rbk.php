@@ -10,6 +10,7 @@ class Rbk extends Model
         'nama_pengantar',
         'nomor_surat',
         'alamat_pengantar',
+        'nama_desa',
         'file_rbk_before',
         'file_rbk_after',
         'file_rbk_after_uploaded_at',

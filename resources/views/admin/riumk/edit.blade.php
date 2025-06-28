@@ -29,7 +29,8 @@
                         <input type="text" class="form-control" id="alamat_pengantar" name="alamat_pengantar" required
                             value="{{ old('alamat_pengantar', $riumk->alamat_pengantar) }}">
                     </div>
-                    <div class="mb-4 col-12">
+                    <x-dropdown-desa id="nama_desa" label="Nama Desa" :selected="old('nama_desa', $riumk->nama_desa)" required />
+                    <div class="mb-4 col-md-6">
                         <label for="file_riumk_before" class="form-label">File RIUMK (PDF, JPG, PNG)</label>
                         <input class="form-control" type="file" id="file_riumk_before" name="file_riumk_before">
                     </div>

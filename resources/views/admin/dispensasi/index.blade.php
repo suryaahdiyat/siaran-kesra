@@ -9,7 +9,7 @@
             <div class="py-3 card-header">
                 <form action="{{ route('admin.dispensasi.index') }}" method="GET" class="mb-3">
                     <div class="input-group">
-                        <input type="text" name="search" class="form-control" placeholder="Cari nama catin/ alamat..."
+                        <input type="text" name="search" class="form-control" placeholder="Cari nama catin/ desa..."
                             value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i> Cari
@@ -26,8 +26,10 @@
                                 <th>No.</th>
                                 <th>Nama Catin L</th>
                                 <th>Nama Catin P</th>
-                                <th>Alamat L</th>
-                                <th>Alamat P</th>
+                                <th>Desa L</th>
+                                <th>Desa P</th>
+                                {{-- <th>Alamat L</th> --}}
+                                {{-- <th>Alamat P</th> --}}
                                 <th>Tanggal Upload</th>
                                 <th>Surat DN</th>
                                 <th>Surat dari KUA</th>
@@ -42,8 +44,14 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="text-truncate" style="max-width: 100px;">{{ $item->nama_pria }}</td>
                                     <td class="text-truncate" style="max-width: 100px;">{{ $item->nama_wanita }}</td>
-                                    <td class="text-truncate" style="max-width: 100px;">{{ $item->alamat_pria }}</td>
-                                    <td class="text-truncate" style="max-width: 100px;">{{ $item->alamat_wanita }}</td>
+                                    <td class="text-center">
+                                        {{ $item->desa_pria_lainnya ? $item->desa_pria_lainnya : ucwords(str_replace('_', ' ', $item->desa_pria)) }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $item->desa_wanita_lainnya ? $item->desa_wanita_lainnya : ucwords(str_replace('_', ' ', $item->desa_wanita)) }}
+                                    </td>
+                                    {{-- <td class="text-truncate" style="max-width: 100px;">{{ $item->alamat_pria }}</td> --}}
+                                    {{-- <td class="text-truncate" style="max-width: 100px;">{{ $item->alamat_wanita }}</td> --}}
                                     <td class="text-truncate" style="max-width: 70px;">
                                         {{ $item->created_at->format('d M Y') }}</td>
                                     <td class="text-center">

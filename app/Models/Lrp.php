@@ -10,6 +10,7 @@ class Lrp extends Model
         'nama_pengantar',
         'nomor_surat',
         'alamat_pengantar',
+        'nama_desa',
         'file_lrp_before',
         'file_lrp_after',
         'file_lrp_after_uploaded_at',

@@ -26,11 +26,8 @@
                         <label for="alamat_pengantar" class="form-label">Alamat Pengantar</label>
                         <input type="text" class="form-control" id="alamat_pengantar" name="alamat_pengantar" required>
                     </div>
-                    {{-- <div class="mb-4 col-12">
-                        <label for="file_riumk_before" class="form-label">File RIUMK (PDF, JPG, PNG)</label>
-                        <input class="form-control" type="file" id="file_riumk_before" name="file_riumk_before">
-                    </div> --}}
-                    <div class="mb-4 col-12">
+                    <x-dropdown-desa id="nama_desa" label="Nama Desa" required />
+                    <div class="mb-4 col-md-6">
                         <label for="file_lrp_before" class="form-label">File LRP (PDF, JPG, PNG)</label>
                         <input class="form-control" type="file" id="file_lrp_before" name="file_lrp_before">
                     </div>

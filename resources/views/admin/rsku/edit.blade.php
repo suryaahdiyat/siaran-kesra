@@ -29,7 +29,8 @@
                         <input type="text" class="form-control" id="alamat_pengantar" name="alamat_pengantar" required
                             value="{{ old('alamat_pengantar', $rsku->alamat_pengantar) }}">
                     </div>
-                    <div class="mb-4 col-12">
+                    <x-dropdown-desa id="nama_desa" label="Nama Desa" :selected="old('nama_desa', $rsku->nama_desa)" required />
+                    <div class="mb-4 col-md-6">
                         <label for="file_rsku_before" class="form-label">File RSKU (PDF, JPG, PNG)</label>
                         <input class="form-control" type="file" id="file_rsku_before" name="file_rsku_before">
                     </div>
