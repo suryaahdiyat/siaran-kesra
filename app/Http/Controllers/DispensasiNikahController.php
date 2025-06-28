@@ -76,16 +76,29 @@ class DispensasiNikahController extends Controller
         // Simpan semua data dari array $dataToStore ke database
         DispensasiNikah::create($dataToStore);
 
-        return redirect('/')->with('success', 'Pengajuan dispensasi nikah Anda telah berhasil dikirim!');
+        return redirect('/')->with('berhasil', 'Pengajuan dispensasi nikah Anda telah berhasil dikirim!');
     }
 
     /**
      * Menampilkan tabel data pengajuan untuk admin.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dataDispensasi = DispensasiNikah::latest()->get();
-        return view('admin.dispensasi.index', compact('dataDispensasi'));
+        $query = DispensasiNikah::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_pria', 'like', "%{$search}%")
+                    ->orWhere('nama_wanita', 'like', "%{$search}%")
+                    ->orWhere('alamat_pria', 'like', "%{$search}%")
+                    ->orWhere('alamat_wanita', 'like', "%{$search}%");
+            });
+        }
+
+        $data = $query->latest()->paginate(10)->withQueryString();
+
+        return view('admin.dispensasi.index', compact('data'));
     }
 
     public function edit($id)
@@ -179,6 +192,13 @@ class DispensasiNikahController extends Controller
 
             Storage::delete($dispensasiNikah->file_bukti_cerai_wanita);
         }
+
+        if ($dispensasiNikah->file_dn_selesai) {
+
+            Storage::delete($dispensasiNikah->file_dn_selesai);
+        }
+
+
         $dispensasiNikah->delete();
 
         return redirect()->route('admin.dispensasi.index')->with('berhasil', 'menghapus data');

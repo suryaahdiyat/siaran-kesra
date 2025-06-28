@@ -33,7 +33,7 @@
 
                 <div class="mt-4 d-flex justify-content-end">
                     <a href="{{ route('admin.sktm2.index') }}" class="btn btn-secondary me-2">Batal</a>
-                    <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
 

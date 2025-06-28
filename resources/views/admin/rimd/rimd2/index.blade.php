@@ -79,12 +79,13 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="text-center">Belum ada data pengajuan.</td>
+                                    <td colspan="9" class="text-center">Belum ada data pengajuan.</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
+                {{ $data->links() }}
             </div>
         </div>
     </div>

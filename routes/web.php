@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Liob2Controller;
+use App\Http\Controllers\Lrp2Controller;
+use App\Http\Controllers\Riumk2Controller;
+use App\Http\Controllers\Rsku2Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
@@ -9,6 +12,7 @@ use App\Http\Controllers\DispensasiNikahController;
 use App\Http\Controllers\DispensasiNikah2Controller;
 use App\Http\Controllers\LiobController;
 use App\Http\Controllers\LrpController;
+use App\Http\Controllers\Rbk2Controller;
 use App\Http\Controllers\RbkController;
 use App\Http\Controllers\Rimd2Controller;
 use App\Http\Controllers\RimdController;
@@ -108,9 +112,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/liob', LiobController::class)->middleware('role:staff,kepala_bidang');
         Route::resource('/liob2', Liob2Controller::class)->middleware('role:staff,kepala_bidang');
         Route::resource('/riumk', RiumkController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/riumk2', Riumk2Controller::class)->middleware('role:staff,kepala_bidang');
         Route::resource('/lrp', LrpController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/lrp2', Lrp2Controller::class)->middleware('role:staff,kepala_bidang');
         Route::resource('/rsku', RskuController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/rsku2', Rsku2Controller::class)->middleware('role:staff,kepala_bidang');
         Route::resource('/rbk', RbkController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/rbk2', Rbk2Controller::class)->middleware('role:staff,kepala_bidang');
         // Tambahkan rute admin lain di sini...
     });
 });

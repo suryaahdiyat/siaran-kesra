@@ -37,6 +37,8 @@ class DispensasiNikah extends Model
         'pernah_nikah_wanita', // <-- Dan di sini
         'file_bukti_cerai_wanita',
         'status',
+        'file_dn_selesai', // Path ke file lampiran surat dispensasi nikah selesai
+        'file_dn_selesai_uploaded_at', // Path ke file lampiran surat dispensasi
     ];
 
     /**

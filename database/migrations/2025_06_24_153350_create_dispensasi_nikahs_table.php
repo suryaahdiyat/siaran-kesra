@@ -16,6 +16,8 @@ return new class extends Migration
 
             // Info Umum
             $table->string('nomor_surat_kua');
+            $table->string('file_dn_selesai')->nullable(); // Path ke file lampiran surat dispensasi nikah selesai
+            $table->string('file_dn_selesai_uploaded_at')->nullable(); // Path ke file lampiran surat dispensasi nikah selesai
             $table->date('tanggal_nikah');
             $table->string('file_surat_kua'); // Path ke file lampiran dari KUA
 
@@ -27,6 +29,8 @@ return new class extends Migration
             $table->string('agama_pria');
             $table->string('pekerjaan_pria');
             $table->text('alamat_pria');
+            /* The code snippet you provided is defining the columns for a database table named `dispensasi_nikahs`
+using Laravel's migration schema builder. */
             $table->boolean('pernah_nikah_pria');
             $table->string('file_bukti_cerai_pria')->nullable(); // Bisa kosong
 

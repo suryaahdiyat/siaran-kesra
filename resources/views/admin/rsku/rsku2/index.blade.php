@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="mb-2 text-gray-800 h3">Surat Keluar > Rekomendasi Izin UMK</h1>
-        <p class="mb-4">Daftar semua permohonan Rekomendasi Izin UMK yang masuk melalui sistem.</p>
+        <h1 class="mb-2 text-gray-800 h3">Surat Keluar > Legalisasi & Rekomendasi SKU</h1>
+        <p class="mb-4">Daftar semua permohonan Legalisasi & Rekomendasi SKU yang masuk melalui sistem.</p>
 
         <div class="mb-4 shadow card">
             <div class="py-3 card-header">
-                <form action="{{ route('admin.riumk2.index') }}" method="GET" class="mb-3">
+                <form action="{{ route('admin.rsku2.index') }}" method="GET" class="mb-3">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control"
                             placeholder="Cari nama pengantar/ alamat..." value="{{ request('search') }}">
@@ -26,9 +26,9 @@
                                 <th>Nama Pengantar</th>
                                 <th>Nomor Surat</th>
                                 <th>Alamat Pengantar</th>
-                                <th>File RIUMK</th>
+                                <th>File RSKU</th>
                                 <th>Tanggal Upload</th>
-                                <th>File RIUMK Selesai</th>
+                                <th>File RSKU Selesai</th>
                                 <th>Tanggal Upload Selesai</th>
                                 <th>Aksi</th>
                             </tr>
@@ -41,15 +41,15 @@
                                     <td>{{ $item->nomor_surat ?? '-' }}</td>
                                     <td>{{ $item->alamat_pengantar }}</td>
                                     <td class="text-center">
-                                        <a href="{{ asset('storage/' . $item->file_riumk_before) }}" target="_blank"
+                                        <a href="{{ asset('storage/' . $item->file_rsku_before) }}" target="_blank"
                                             class="btn btn-sm btn-info">
                                             <i class="bi bi-download"></i> Lihat
                                         </a>
                                     </td>
                                     <td>{{ $item->created_at->format('d M Y') }}</td>
                                     <td class="text-center">
-                                        @if (!empty($item->file_riumk_after))
-                                            <a href="{{ asset('storage/' . $item->file_riumk_after) }}" target="_blank"
+                                        @if (!empty($item->file_rsku_after))
+                                            <a href="{{ asset('storage/' . $item->file_rsku_after) }}" target="_blank"
                                                 class="btn btn-sm btn-info">
                                                 <i class="bi bi-download"></i> Lihat
                                             </a>
@@ -59,17 +59,17 @@
                                     </td>
 
                                     <td>
-                                        {{ $item->file_riumk_after_uploaded_at
-                                            ? \Carbon\Carbon::parse($item->file_riumk_after_uploaded_at)->translatedFormat('d F Y')
+                                        {{ $item->file_rsku_after_uploaded_at
+                                            ? \Carbon\Carbon::parse($item->file_rsku_after_uploaded_at)->translatedFormat('d F Y')
                                             : '-' }}
                                     </td>
 
 
 
                                     <td class="text-center justify-content-evenly d-flex">
-                                        <a href="{{ route('admin.riumk2.edit', $item->id) }}"
+                                        <a href="{{ route('admin.rsku2.edit', $item->id) }}"
                                             class="btn btn-sm btn-secondary">Edit</a>
-                                        <form action="{{ route('admin.riumk.destroy', $item->id) }}" method="POST">
+                                        <form action="{{ route('admin.rsku.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('hapus data ini?')"

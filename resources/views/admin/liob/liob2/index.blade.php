@@ -69,7 +69,7 @@
                                     <td class="text-center justify-content-evenly d-flex">
                                         <a href="{{ route('admin.liob2.edit', $item->id) }}"
                                             class="btn btn-sm btn-secondary">Edit</a>
-                                        <form action="{{ route('admin.rimd.destroy', $item->id) }}" method="POST">
+                                        <form action="{{ route('admin.liob.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('hapus data ini?')"
@@ -79,12 +79,13 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="text-center">Belum ada data pengajuan.</td>
+                                    <td colspan="9" class="text-center">Belum ada data pengajuan.</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
+                {{ $data->links() }}
             </div>
         </div>
     </div>
