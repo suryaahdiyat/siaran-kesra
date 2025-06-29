@@ -71,7 +71,7 @@ class Rbk2Controller extends Controller
         // dd($rbk);
         $dataToUpdate = $request->validate([
             'nomor_surat' => 'required|string|max:255',
-            'file_rbk_after' => 'required|file|mimes:pdf,jpg,png|max:2048',
+            'file_rbk_after' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
         // Store the uploaded file
@@ -82,6 +82,9 @@ class Rbk2Controller extends Controller
             }
             $dataToUpdate['file_rbk_after'] = $request->file('file_rbk_after')->store('rbk/after', 'public');
             $dataToUpdate['file_rbk_after_uploaded_at'] = now();
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_rbk_after'] = $rbk->file_rbk_after;
         }
 
 

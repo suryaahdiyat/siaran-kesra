@@ -71,7 +71,7 @@ class Lrp2Controller extends Controller
         // dd($lrp);
         $dataToUpdate = $request->validate([
             'nomor_surat' => 'required|string|max:255',
-            'file_lrp_after' => 'required|file|mimes:pdf,jpg,png|max:2048',
+            'file_lrp_after' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
         // Store the uploaded file
@@ -82,6 +82,9 @@ class Lrp2Controller extends Controller
             }
             $dataToUpdate['file_lrp_after'] = $request->file('file_lrp_after')->store('lrp/after', 'public');
             $dataToUpdate['file_lrp_after_uploaded_at'] = now();
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_lrp_after'] = $lrp->file_lrp_after;
         }
 
 

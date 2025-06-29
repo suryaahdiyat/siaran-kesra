@@ -71,7 +71,7 @@ class Riumk2Controller extends Controller
         // dd($riumk);
         $dataToUpdate = $request->validate([
             'nomor_surat' => 'required|string|max:255',
-            'file_riumk_after' => 'required|file|mimes:pdf,jpg,png|max:2048',
+            'file_riumk_after' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
         // Store the uploaded file
@@ -82,6 +82,9 @@ class Riumk2Controller extends Controller
             }
             $dataToUpdate['file_riumk_after'] = $request->file('file_riumk_after')->store('riumk/after', 'public');
             $dataToUpdate['file_riumk_after_uploaded_at'] = now();
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_riumk_after'] = $riumk->file_riumk_after;
         }
 
 

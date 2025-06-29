@@ -73,7 +73,8 @@ class DispensasiNikah2Controller extends Controller
         // dd($request->all());
         // dd($dispensasi);
         $dataToUpdate = $request->validate([
-            'file_dn_selesai' => 'required|file|mimes:pdf,jpg,png|max:2048',
+            'nomor_surat' => 'required|string|max:255',
+            'file_dn_selesai' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
         // Store the uploaded file
@@ -84,6 +85,9 @@ class DispensasiNikah2Controller extends Controller
             }
             $dataToUpdate['file_dn_selesai'] = $request->file('file_dn_selesai')->store('dispensasi/selesai', 'public');
             $dataToUpdate['file_dn_selesai_uploaded_at'] = now();
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_dn_selesai'] = $dispensasi->file_dn_selesai;
         }
 
 

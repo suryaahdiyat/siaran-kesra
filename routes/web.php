@@ -4,6 +4,8 @@ use App\Http\Controllers\Liob2Controller;
 use App\Http\Controllers\Lrp2Controller;
 use App\Http\Controllers\Riumk2Controller;
 use App\Http\Controllers\Rsku2Controller;
+use App\Http\Controllers\Sl2Controller;
+use App\Http\Controllers\SlController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
@@ -118,6 +120,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/rsku2', Rsku2Controller::class)->middleware('role:staff,kepala_bidang');
         Route::resource('/rbk', RbkController::class)->middleware('role:staff,kepala_bidang');
         Route::resource('/rbk2', Rbk2Controller::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/sl', SlController::class)->middleware('role:staff,kepala_bidang');
+        Route::resource('/sl2', Sl2Controller::class)->middleware('role:staff,kepala_bidang');
         // Tambahkan rute admin lain di sini...
     });
 });

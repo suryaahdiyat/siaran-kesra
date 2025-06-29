@@ -59,7 +59,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- Toast Container --}}
-    <div class="bottom-0 p-3 position-fixed end-0" style="z-index: 1100">
+    <div class="top-0 p-3 position-fixed end-0" style="z-index: 1100">
         <div id="mainToast" class="border-0 toast align-items-center text-bg-success" role="alert"
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">

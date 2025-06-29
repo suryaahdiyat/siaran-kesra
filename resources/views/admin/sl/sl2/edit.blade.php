@@ -14,25 +14,25 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin.liob2.update', $liob->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.sl2.update', $sl->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <h5 class="mb-3">Surat Keluar > Edit Data Rekomendasi Izin Mencari Dana</h5>
+                <h5 class="mb-3">Surat Keluar > Edit Data Surat Lainnya</h5>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="nomor_surat" class="form-label">Nomor Surat</label>
                         <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" required
-                            value="{{ old('nomor_surat', $liob->nomor_surat) }}">
+                            value="{{ old('nomor_surat', $sl->nomor_surat) }}">
                     </div>
                     <div class="mb-4 col-6">
-                        <label for="file_liob_after" class="form-label">File LIOB Selesai (PDF, JPG, PNG)</label>
-                        <input class="form-control" type="file" id="file_liob_after" name="file_liob_after">
+                        <label for="file_sl_after" class="form-label">File SL Selesai (PDF, JPG, PNG)</label>
+                        <input class="form-control" type="file" id="file_sl_after" name="file_sl_after">
                     </div>
                 </div>
                 <hr>
 
                 <div class="mt-4 d-flex justify-content-end">
-                    <a href="{{ route('admin.liob2.index') }}" class="btn btn-secondary me-2">Batal</a>
+                    <a href="{{ route('admin.sl2.index') }}" class="btn btn-secondary me-2">Batal</a>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

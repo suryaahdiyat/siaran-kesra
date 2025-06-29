@@ -20,12 +20,12 @@
                 @method('PUT')
                 <h5 class="mb-3">Surat Keluar > Edit Dispensasi Nikah</h5>
                 <div class="row">
-                    {{-- <div class="mb-3 col-md-6">
+                    <div class="mb-3 col-md-6">
                         <label for="nomor_surat" class="form-label">Nomor Surat</label>
                         <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" required
                             value="{{ old('nomor_surat', $dispensasi->nomor_surat) }}">
-                    </div> --}}
-                    <div class="mb-4 col-12">
+                    </div>
+                    <div class="mb-4 col-6">
                         <label for="file_dn_selesai" class="form-label">File Dispensasi Nikah Selesai (PDF, JPG,
                             PNG)</label>
                         <input class="form-control" type="file" id="file_dn_selesai" name="file_dn_selesai">

@@ -97,11 +97,11 @@
 
                 <canvas id="rbkChart" width="400" height="200"></canvas>
             </div>
-            {{-- <div class="col-md-6">
-                <h3 class="mb-4">Surat RKSU per Desa</h3>
+            <div class="col-md-6">
+                <h3 class="mb-4">Surat Lainnya per Desa</h3>
 
-                <canvas id="rskuChart" width="400" height="200"></canvas>
-            </div> --}}
+                <canvas id="slChart" width="400" height="200"></canvas>
+            </div>
         </div>
 
     </div>
@@ -481,6 +481,44 @@
                     {
                         label: 'Surat RBK Keluar',
                         data: rbkKeluar,
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        const slMasuk = listDesa.map(d => (@json($slMasuk)[d] ?? 0));
+        const slKeluar = listDesa.map(d => (@json($slKeluar)[d] ?? 0));
+
+        const ctxSl = document.getElementById('slChart').getContext('2d');
+        const chartSl = new Chart(ctxSl, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                        label: 'Surat Lainnya Masuk',
+                        data: slMasuk,
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Surat Lainnya Keluar',
+                        data: slKeluar,
                         backgroundColor: 'rgba(255, 99, 132, 0.7)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1

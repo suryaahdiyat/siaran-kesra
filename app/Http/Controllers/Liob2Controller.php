@@ -70,7 +70,7 @@ class Liob2Controller extends Controller
         // dd($liob);
         $dataToUpdate = $request->validate([
             'nomor_surat' => 'required|string|max:255',
-            'file_liob_after' => 'required|file|mimes:pdf,jpg,png|max:2048',
+            'file_liob_after' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
         // Store the uploaded file
@@ -81,6 +81,9 @@ class Liob2Controller extends Controller
             }
             $dataToUpdate['file_liob_after'] = $request->file('file_liob_after')->store('liob/after', 'public');
             $dataToUpdate['file_liob_after_uploaded_at'] = now();
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_liob_after'] = $liob->file_liob_after;
         }
 
 

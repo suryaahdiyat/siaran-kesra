@@ -24,7 +24,7 @@
                         <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" required
                             value="{{ old('nomor_surat', $lrp->nomor_surat) }}">
                     </div>
-                    <div class="mb-4 col-12">
+                    <div class="mb-4 col-6">
                         <label for="file_lrp_after" class="form-label">File LRP Selesai (PDF, JPG, PNG)</label>
                         <input class="form-control" type="file" id="file_lrp_after" name="file_lrp_after">
                     </div>

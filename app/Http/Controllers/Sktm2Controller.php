@@ -71,7 +71,7 @@ class Sktm2Controller extends Controller
         // dd($sktm);
         $dataToUpdate = $request->validate([
             'nomor_surat' => 'required|string|max:255',
-            'file_sktm_after' => 'required|file|mimes:pdf,jpg,png|max:2048',
+            'file_sktm_after' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
         // Store the uploaded file
@@ -82,6 +82,9 @@ class Sktm2Controller extends Controller
             }
             $dataToUpdate['file_sktm_after'] = $request->file('file_sktm_after')->store('sktm/after', 'public');
             $dataToUpdate['file_sktm_after_uploaded_at'] = now();
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_sktm_after'] = $sktm->file_sktm_after;
         }
 
 

@@ -16,6 +16,7 @@ class DispensasiNikah extends Model
      */
     protected $fillable = [
         'nomor_surat_kua',
+        'nomor_surat', // <-- Tambahkan ini untuk nomor surat dispensasi nikah
         'tanggal_nikah',
         'file_surat_kua',
         'nama_pria',

@@ -183,7 +183,18 @@ class DashboardController extends Controller
             ->groupBy('nama_desa')
             ->pluck('total', 'nama_desa');
 
+        $slMasuk = DB::table('sls')
+            ->whereNotNull('file_sl_before')
+            ->select('nama_desa', DB::raw('count(*) as total'))
+            ->groupBy('nama_desa')
+            ->pluck('total', 'nama_desa');
 
-        return view('dashboard', compact('jumlahSuratMasuk', 'jumlahSuratKeluar', 'dMPria', 'dMWanita',  'dKPria', 'dKWanita', 'sktmMasuk', 'sktmKeluar', 'rimdMasuk', 'rimdKeluar', 'liobMasuk', 'liobKeluar', 'riumkMasuk', 'riumkKeluar', 'lrpMasuk', 'lrpKeluar', 'rskuMasuk', 'rskuKeluar', 'rbkMasuk', 'rbkKeluar'));
+        $slKeluar = DB::table('sls')
+            ->whereNotNull('file_sl_after')
+            ->select('nama_desa', DB::raw('count(*) as total'))
+            ->groupBy('nama_desa')
+            ->pluck('total', 'nama_desa');
+
+        return view('dashboard', compact('jumlahSuratMasuk', 'jumlahSuratKeluar', 'dMPria', 'dMWanita',  'dKPria', 'dKWanita', 'sktmMasuk', 'sktmKeluar', 'rimdMasuk', 'rimdKeluar', 'liobMasuk', 'liobKeluar', 'riumkMasuk', 'riumkKeluar', 'lrpMasuk', 'lrpKeluar', 'rskuMasuk', 'rskuKeluar', 'rbkMasuk', 'rbkKeluar', 'slMasuk', 'slKeluar'));
     }
 }

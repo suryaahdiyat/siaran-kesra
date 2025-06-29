@@ -71,7 +71,7 @@ class Rsku2Controller extends Controller
         // dd($rsku);
         $dataToUpdate = $request->validate([
             'nomor_surat' => 'required|string|max:255',
-            'file_rsku_after' => 'required|file|mimes:pdf,jpg,png|max:2048',
+            'file_rsku_after' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
         // Store the uploaded file
@@ -82,6 +82,9 @@ class Rsku2Controller extends Controller
             }
             $dataToUpdate['file_rsku_after'] = $request->file('file_rsku_after')->store('rsku/after', 'public');
             $dataToUpdate['file_rsku_after_uploaded_at'] = now();
+        } else {
+            // If no new file is uploaded, keep the old file
+            $dataToUpdate['file_rsku_after'] = $rsku->file_rsku_after;
         }
 
 

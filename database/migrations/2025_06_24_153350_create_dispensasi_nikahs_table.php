@@ -16,6 +16,7 @@ return new class extends Migration
 
             // Info Umum
             $table->string('nomor_surat_kua');
+            $table->string('nomor_surat')->nullable(); // Nomor surat dispensasi nikah, bisa kosong
             $table->string('file_dn_selesai')->nullable(); // Path ke file lampiran surat dispensasi nikah selesai
             $table->string('file_dn_selesai_uploaded_at')->nullable(); // Path ke file lampiran surat dispensasi nikah selesai
             $table->date('tanggal_nikah');

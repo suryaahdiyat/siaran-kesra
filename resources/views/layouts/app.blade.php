@@ -86,6 +86,7 @@
                     'admin.lrp.*',
                     'admin.rsku.*',
                     'admin.rbk.*',
+                    'admin.sl.*',
                 )
                     ? 'show'
                     : '' }}"
@@ -138,6 +139,12 @@
                             Rekomendasi Bantuan Keagamaan
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.sl.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.sl.*') ? 'active text-white' : '' }}">
+                            Surat Lainnya
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -154,6 +161,7 @@
                     'admin.lrp2.*',
                     'admin.rsku2.*',
                     'admin.rbk2.*',
+                    'admin.sl2.*',
                 )
                     ? 'show'
                     : '' }}"
@@ -206,6 +214,12 @@
                             Rekomendasi Bantuan Keagamaan
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.sl2.index') }}"
+                            class="nav-link {{ Request::routeIs('admin.sl2.*') ? 'active text-white' : '' }}">
+                            Surat Lainnya
+                        </a>
+                    </li>
                 </ul>
 
             </li>
@@ -239,7 +253,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- Toast Container --}}
-    <div class="bottom-0 p-3 position-fixed end-0" style="z-index: 1100">
+    {{-- "position-fixed top-0 start-50 translate-middle-x p-3" --}}
+    <div class="top-0 p-3 position-fixed end-0" style="z-index: 1100">
         <div id="mainToast" class="border-0 toast align-items-center text-bg-success" role="alert"
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
