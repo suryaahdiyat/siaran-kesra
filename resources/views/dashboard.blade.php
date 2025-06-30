@@ -5,6 +5,35 @@
 @section('content')
     <div class="container-fluid">
         <h1 class="mb-4 text-gray-800 h3">Beranda</h1>
+        <form method="GET" action="{{ route('dashboard') }}">
+            <div class="mb-3 row">
+                <div class="col-md-3">
+                    <label>Bulan</label>
+                    <select name="bulan" class="form-select">
+                        <option value="">-- Semua Bulan --</option>
+                        @foreach (range(1, 12) as $bulan)
+                            <option value="{{ $bulan }}" {{ request('bulan') == $bulan ? 'selected' : '' }}>
+                                {{ \Carbon\Carbon::create()->month($bulan)->translatedFormat('F') }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label>Tahun</label>
+                    <select name="tahun" class="form-select">
+                        <option value="">-- Semua Tahun --</option>
+                        @foreach (range(now()->year, 2020) as $tahun)
+                            <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                {{ $tahun }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-primary w-100">Filter</button>
+                </div>
+            </div>
+        </form>
+
 
         <div class="mb-4 shadow card">
             <div class="py-3 card-header">
