@@ -35,6 +35,9 @@ class DispensasiNikah2Controller extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.dispensasi.dispensasi2.add');
     }
 
@@ -59,6 +62,9 @@ class DispensasiNikah2Controller extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dispensasi = DispensasiNikah::findOrFail($id);
         return view('admin.dispensasi.dispensasi2.edit', compact('dispensasi'));
     }
@@ -68,6 +74,9 @@ class DispensasiNikah2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         // belum disini
         $dispensasi = DispensasiNikah::findOrFail($id);
         // dd($request->all());

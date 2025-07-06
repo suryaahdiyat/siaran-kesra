@@ -34,6 +34,9 @@ class RskuController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.rsku.add');
     }
 
@@ -42,6 +45,9 @@ class RskuController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToStore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -68,6 +74,9 @@ class RskuController extends Controller
      */
     public function edit(Rsku $rsku)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.rsku.edit', compact('rsku'));
     }
 
@@ -76,6 +85,9 @@ class RskuController extends Controller
      */
     public function update(Request $request, Rsku $rsku)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -103,6 +115,9 @@ class RskuController extends Controller
      */
     public function destroy(Rsku $rsku)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         if ($rsku->file_rsku_before) {
             Storage::delete($rsku->file_rsku_before);
         }

@@ -57,6 +57,9 @@ class Sktm2Controller extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $sktm = Sktm::findOrFail($id);
         return view('admin.sktm.sktm2.edit', compact('sktm'));
     }
@@ -66,6 +69,9 @@ class Sktm2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $sktm = Sktm::findOrFail($id);
         // dd($request->all());
         // dd($sktm);

@@ -35,6 +35,9 @@ class RiumkController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.riumk.add');
     }
 
@@ -43,6 +46,9 @@ class RiumkController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataTostore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -69,6 +75,9 @@ class RiumkController extends Controller
      */
     public function edit(Riumk $riumk)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.riumk.edit', compact('riumk'));
     }
 
@@ -77,6 +86,9 @@ class RiumkController extends Controller
      */
     public function update(Request $request, Riumk $riumk)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -105,6 +117,9 @@ class RiumkController extends Controller
      */
     public function destroy(Riumk $riumk)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         if ($riumk->file_riumk_before) {
             Storage::delete($riumk->file_riumk_before);
         }

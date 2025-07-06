@@ -33,6 +33,9 @@ class LiobController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.liob.add');
     }
 
@@ -41,6 +44,9 @@ class LiobController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataTostore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -67,6 +73,9 @@ class LiobController extends Controller
      */
     public function edit(Liob $liob)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.liob.edit', compact('liob'));
     }
 
@@ -75,6 +84,9 @@ class LiobController extends Controller
      */
     public function update(Request $request, Liob $liob)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -103,6 +115,9 @@ class LiobController extends Controller
      */
     public function destroy(Liob $liob)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         if ($liob->file_liob_before) {
             Storage::delete($liob->file_liob_before);
         }

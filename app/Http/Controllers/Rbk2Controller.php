@@ -57,6 +57,9 @@ class Rbk2Controller extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $rbk = Rbk::findOrFail($id);
         return view('admin.rbk.rbk2.edit', compact('rbk'));
     }
@@ -66,6 +69,9 @@ class Rbk2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $rbk = Rbk::findOrFail($id);
         // dd($request->all());
         // dd($rbk);

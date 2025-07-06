@@ -35,7 +35,10 @@
                                 <th>Surat dari KUA</th>
                                 <th>Status Nikah L</th>
                                 <th>Status Nikah P</th>
-                                <th>Aksi</th>
+                                @role('staff')
+                                    <th>Aksi</th>
+                                @endrole
+                                {{-- <th>Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -90,19 +93,20 @@
                                         @endif
                                     </td>
 
+                                    @role('staff')
+                                        <td class="text-center justify-content-evenly d-flex">
+                                            {{-- Tombol aksi lain seperti edit/hapus bisa ditambahkan di sini --}}
+                                            <a href="{{ route('admin.dispensasi.edit', $item->id) }}"
+                                                class="btn btn-sm btn-secondary">Edit</a>
+                                            <form action="{{ route('admin.dispensasi.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('hapus data ini?')"
+                                                    class="btn btn-sm btn-danger">Hapus</button>
+                                            </form>
+                                        </td>
+                                    @endrole
 
-
-                                    <td class="text-center justify-content-evenly d-flex">
-                                        {{-- Tombol aksi lain seperti edit/hapus bisa ditambahkan di sini --}}
-                                        <a href="{{ route('admin.dispensasi.edit', $item->id) }}"
-                                            class="btn btn-sm btn-secondary">Edit</a>
-                                        <form action="{{ route('admin.dispensasi.destroy', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" onclick="return confirm('hapus data ini?')"
-                                                class="btn btn-sm btn-danger">Hapus</button>
-                                        </form>
-                                    </td>
                                 </tr>
                             @empty
                                 <tr>

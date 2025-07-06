@@ -34,6 +34,9 @@ class SktmController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.sktm.add');
     }
 
@@ -42,6 +45,9 @@ class SktmController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         // dd($request->all());
         $dataTostore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
@@ -69,6 +75,9 @@ class SktmController extends Controller
      */
     public function edit(Sktm $sktm)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.sktm.edit', [
             'sktm' => $sktm,
         ]);
@@ -79,6 +88,9 @@ class SktmController extends Controller
      */
     public function update(Request $request, Sktm $sktm)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -110,6 +122,9 @@ class SktmController extends Controller
      */
     public function destroy(Sktm $sktm)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         if ($sktm->file_sktm_before) {
             Storage::delete($sktm->file_sktm_before);
         }

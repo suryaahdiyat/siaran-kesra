@@ -112,6 +112,9 @@ class DispensasiNikahController extends Controller
 
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         // dd($id);
         $data = DispensasiNikah::findOrFail($id);
         // dd($data);
@@ -120,6 +123,9 @@ class DispensasiNikahController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dispensasi_nikah = DispensasiNikah::findOrFail($id);
         // dd($dispensasi_nikah);
 
@@ -189,6 +195,9 @@ class DispensasiNikahController extends Controller
 
     public function destroy($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dispensasiNikah = DispensasiNikah::findOrFail($id);
 
         if ($dispensasiNikah->file_surat_kua) {

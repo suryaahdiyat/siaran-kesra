@@ -32,7 +32,10 @@
                                 <th>Tanggal Upload</th>
                                 <th>File SKTM Selesai</th>
                                 <th>Tanggal Upload Selesai</th>
-                                <th>Aksi</th>
+                                @role('staff')
+                                    <th>Aksi</th>
+                                @endrole
+                                {{-- <th>Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -66,18 +69,19 @@
                                             : '-' }}
                                     </td>
 
+                                    @role('staff')
+                                        <td class="text-center justify-content-evenly d-flex">
+                                            <a href="{{ route('admin.sktm2.edit', $item->id) }}"
+                                                class="btn btn-sm btn-secondary">Edit</a>
+                                            <form action="{{ route('admin.sktm.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('hapus data ini?')"
+                                                    class="btn btn-sm btn-danger">Hapus</button>
+                                            </form>
+                                        </td>
+                                    @endrole
 
-
-                                    <td class="text-center justify-content-evenly d-flex">
-                                        <a href="{{ route('admin.sktm2.edit', $item->id) }}"
-                                            class="btn btn-sm btn-secondary">Edit</a>
-                                        <form action="{{ route('admin.sktm.destroy', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" onclick="return confirm('hapus data ini?')"
-                                                class="btn btn-sm btn-danger">Hapus</button>
-                                        </form>
-                                    </td>
                                 </tr>
                             @empty
                                 <tr>

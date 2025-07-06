@@ -31,6 +31,9 @@ class Sl2Controller extends Controller
 
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $sl = Sl::findOrFail($id);
         return view('admin.sl.sl2.edit', compact('sl'));
     }
@@ -38,6 +41,9 @@ class Sl2Controller extends Controller
 
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $sl = Sl::findOrFail($id);
         // dd($request->all());
         // dd($sl);

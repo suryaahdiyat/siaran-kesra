@@ -17,7 +17,9 @@
                     </div>
                 </form>
 
-                <a href="{{ route('admin.liob.create') }}" class="m-0 font-weight-bold text-primary">Tambah data</a>
+                @role('staff')
+                    <a href="{{ route('admin.liob.create') }}" class="m-0 font-weight-bold text-primary">Tambah data</a>
+                @endrole
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -30,7 +32,10 @@
                                 <th>Desa Asal</th>
                                 <th>File LIOB</th>
                                 <th>Tanggal Upload</th>
-                                <th>Aksi</th>
+                                @role('staff')
+                                    <th>Aksi</th>
+                                @endrole
+                                {{-- <th>Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -48,16 +53,18 @@
                                     </td>
                                     <td>{{ $item->created_at->format('d M Y') }}</td>
 
-                                    <td class="text-center justify-content-evenly d-flex">
-                                        <a href="{{ route('admin.liob.edit', $item->id) }}"
-                                            class="btn btn-sm btn-secondary">Edit</a>
-                                        <form action="{{ route('admin.liob.destroy', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" onclick="return confirm('hapus data ini?')"
-                                                class="btn btn-sm btn-danger">Hapus</button>
-                                        </form>
-                                    </td>
+                                    @role('staff')
+                                        <td class="text-center justify-content-evenly d-flex">
+                                            <a href="{{ route('admin.liob.edit', $item->id) }}"
+                                                class="btn btn-sm btn-secondary">Edit</a>
+                                            <form action="{{ route('admin.liob.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('hapus data ini?')"
+                                                    class="btn btn-sm btn-danger">Hapus</button>
+                                            </form>
+                                        </td>
+                                    @endrole
                                 </tr>
                             @empty
                                 <tr>

@@ -34,6 +34,9 @@ class RimdController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.rimd.add');
     }
 
@@ -42,6 +45,9 @@ class RimdController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         // dd($request->all());
         $dataTostore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
@@ -69,6 +75,9 @@ class RimdController extends Controller
      */
     public function edit(Rimd $rimd)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.rimd.edit', compact('rimd'));
     }
 
@@ -77,6 +86,9 @@ class RimdController extends Controller
      */
     public function update(Request $request, Rimd $rimd)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -105,6 +117,9 @@ class RimdController extends Controller
      */
     public function destroy(Rimd $rimd)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         if ($rimd->file_rimd_before) {
             Storage::delete($rimd->file_rimd_before);
         }

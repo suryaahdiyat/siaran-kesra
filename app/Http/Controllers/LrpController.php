@@ -34,6 +34,9 @@ class LrpController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.lrp.add');
     }
 
@@ -42,6 +45,9 @@ class LrpController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToStore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -68,6 +74,9 @@ class LrpController extends Controller
      */
     public function edit(Lrp $lrp)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.lrp.edit', compact('lrp'));
     }
 
@@ -76,6 +85,9 @@ class LrpController extends Controller
      */
     public function update(Request $request, Lrp $lrp)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -104,6 +116,9 @@ class LrpController extends Controller
      */
     public function destroy(Lrp $lrp)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         if ($lrp->file_lrp_before) {
             Storage::delete($lrp->file_lrp_before);
         }

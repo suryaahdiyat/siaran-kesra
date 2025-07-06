@@ -57,6 +57,9 @@ class Rsku2Controller extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $rsku = Rsku::findOrFail($id);
         return view('admin.rsku.rsku2.edit', compact('rsku'));
     }
@@ -66,6 +69,9 @@ class Rsku2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $rsku = Rsku::findOrFail($id);
         // dd($request->all());
         // dd($rsku);

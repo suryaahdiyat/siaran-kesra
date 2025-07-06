@@ -57,6 +57,9 @@ class Riumk2Controller extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $riumk = Riumk::findOrFail($id);
         return view('admin.riumk.riumk2.edit', compact('riumk'));
     }
@@ -66,6 +69,9 @@ class Riumk2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $riumk = Riumk::findOrFail($id);
         // dd($request->all());
         // dd($riumk);

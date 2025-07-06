@@ -34,6 +34,9 @@ class SlController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.sl.add');
     }
 
@@ -42,6 +45,9 @@ class SlController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         // dd($request->all());
         $dataTostore = $request->validate([
             'jenis_surat' => 'required|string|max:255',
@@ -83,6 +89,9 @@ class SlController extends Controller
      */
     public function update(Request $request, Sl $sl)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToUpdate = $request->validate([
             'jenis_surat' => 'required|string|max:255',
             'nama_pengantar' => 'required|string|max:255',
@@ -113,6 +122,9 @@ class SlController extends Controller
      */
     public function destroy(Sl $sl)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         if ($sl->file_sl_before) {
             Storage::delete($sl->file_sl_before);
         }

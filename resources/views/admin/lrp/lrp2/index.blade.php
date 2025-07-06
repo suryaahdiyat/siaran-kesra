@@ -30,7 +30,10 @@
                                 <th>Tanggal Upload</th>
                                 <th>File LRP Selesai</th>
                                 <th>Tanggal Upload Selesai</th>
-                                <th>Aksi</th>
+                                @role('staff')
+                                    <th>Aksi</th>
+                                @endrole
+                                {{-- <th>Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -65,17 +68,18 @@
                                     </td>
 
 
-
-                                    <td class="text-center justify-content-evenly d-flex">
-                                        <a href="{{ route('admin.lrp2.edit', $item->id) }}"
-                                            class="btn btn-sm btn-secondary">Edit</a>
-                                        <form action="{{ route('admin.lrp.destroy', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" onclick="return confirm('hapus data ini?')"
-                                                class="btn btn-sm btn-danger">Hapus</button>
-                                        </form>
-                                    </td>
+                                    @role('staff')
+                                        <td class="text-center justify-content-evenly d-flex">
+                                            <a href="{{ route('admin.lrp2.edit', $item->id) }}"
+                                                class="btn btn-sm btn-secondary">Edit</a>
+                                            <form action="{{ route('admin.lrp.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('hapus data ini?')"
+                                                    class="btn btn-sm btn-danger">Hapus</button>
+                                            </form>
+                                        </td>
+                                    @endrole
                                 </tr>
                             @empty
                                 <tr>

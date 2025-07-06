@@ -34,6 +34,9 @@ class RbkController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.rbk.add');
     }
 
@@ -42,6 +45,9 @@ class RbkController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToStore = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -68,6 +74,9 @@ class RbkController extends Controller
      */
     public function edit(Rbk $rbk)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         return view('admin.rbk.edit', compact('rbk'));
     }
 
@@ -76,6 +85,9 @@ class RbkController extends Controller
      */
     public function update(Request $request, Rbk $rbk)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $dataToUpdate = $request->validate([
             'nama_pengantar' => 'required|string|max:255',
             'alamat_pengantar' => 'required|string|max:255',
@@ -103,6 +115,9 @@ class RbkController extends Controller
      */
     public function destroy(Rbk $rbk)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         if ($rbk->file_rbk_before) {
             Storage::delete($rbk->file_rbk_before);
         }

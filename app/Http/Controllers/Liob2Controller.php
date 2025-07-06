@@ -56,6 +56,9 @@ class Liob2Controller extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $liob = Liob::findOrFail($id);
         return view('admin.liob.liob2.edit', compact('liob'));
     }
@@ -65,6 +68,9 @@ class Liob2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $liob = Liob::findOrFail($id);
         // dd($request->all());
         // dd($liob);

@@ -56,6 +56,9 @@ class Rimd2Controller extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $rimd = Rimd::findOrFail($id);
         return view('admin.rimd.rimd2.edit', compact('rimd'));
     }
@@ -65,6 +68,9 @@ class Rimd2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'staff') {
+            abort(403);
+        }
         $rimd = Rimd::findOrFail($id);
         // dd($request->all());
         // dd($rimd);
